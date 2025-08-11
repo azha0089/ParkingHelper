@@ -19,10 +19,10 @@
               <el-form :model="formData" label-width="auto" label-position="top"
                        style="margin-left: 22%;margin-right:30% ">
                 <el-form-item label="用户名" style="margin-bottom: 0;margin-top: 6%">
-                  <el-input v-model="formData.username" placeholder="学生用户名为学号,管理员为工号" clearable></el-input>
+                  <el-input v-model="formData.username" placeholder="Input your UserID" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="密码" style="margin-bottom: 0">
-                  <el-input v-model="formData.password" placeholder="密码长度为3-10个字符" show-password type="password"
+                  <el-input v-model="formData.password" placeholder="Input your password" show-password type="password"
                             clearable></el-input>
                 </el-form-item>
 
@@ -38,7 +38,7 @@
           <div v-show="isShow" class="btnArea">
             <el-button type="success" round
                        style="width: 100px;margin-left: 25%;background-color:rgba(97,116,131,0.22);border: 1px solid #ccc8c8;letter-spacing: 2px"
-                       @click="login">登录
+                       @click="login">Login
             </el-button>
           </div>
         </transition>
@@ -59,17 +59,17 @@
           <!--            注册表单-->
           <div v-show="!isShow" class="registForm">
             <el-form :model="ruleForm" :rules="rules" ref="checkForm" status-icon  label-width="auto" >
-              <el-form-item label="用户名" style="margin-bottom: 17px;margin-top: 3%" prop="username">
-                <el-input v-model="ruleForm.username" placeholder="请输入学号" clearable></el-input>
+              <el-form-item label="UserID" style="margin-bottom: 17px;margin-top: 3%" prop="username">
+                <el-input v-model="ruleForm.username" placeholder="Input your UserID" clearable></el-input>
               </el-form-item>
-              <el-form-item   label="密码" style="margin-bottom: 10px;margin-top: 0" prop="password">
-                <el-input show-password type="password" placeholder="请输入密码" v-model="ruleForm.password" autocomplete="off"></el-input>
+              <el-form-item   label="Password" style="margin-bottom: 10px;margin-top: 0" prop="password">
+                <el-input show-password type="password" placeholder="Input your Password" v-model="ruleForm.password" autocomplete="off"></el-input>
               </el-form-item>
               <div class="demo-progress" style="margin-left:25%;height: 15px;margin-top: 13px">
                 <el-progress striped striped-flow :duration="8"  style="width: 240px;"  :percentage="progressLength" :format="format" :color="getColor" />
               </div>
-              <el-form-item label="确认密码" style="margin-bottom: 17px;margin-top: 3px" prop="checkPass">
-                <el-input show-password type="password" placeholder="请输入相同密码" v-model="ruleForm.checkPass"
+              <el-form-item label="Confirm Password" style="margin-bottom: 17px;margin-top: 3px" prop="checkPass">
+                <el-input show-password type="password" placeholder="Input the same password" v-model="ruleForm.checkPass"
                           autocomplete="off" maxlength="12"></el-input>
               </el-form-item>
             </el-form>
@@ -81,11 +81,11 @@
           <div v-show="!isShow" class="registBtn">
             <el-button type="success" round
                        style="width: 100px;margin-left:37%;background-color: rgba(97,116,131,0.22);border: 1px solid #ccc8c8;letter-spacing: 2px"
-                       @click="register">注册
+                       @click="register">Signup
             </el-button>
             <el-button type="success" round
                        style="background-color: rgba(97,116,131,0.22);width: 100px;border: 1px solid #ccc8c8;letter-spacing: 2px"
-                       @click="reSetForm">重置表格
+                       @click="reSetForm">Reset info
             </el-button>
           </div>
         </transition>
@@ -107,12 +107,12 @@
             <!-- 欢迎语 -->
             <div
                 style="flex: 2;display: flex;align-items: center;font-size: 22px;color:  rgba(97, 116, 131, 0.97);font-weight: bold">
-              信息平台
+              ParkingHelper
             </div>
             <!-- 欢迎图片 -->
             <div style="flex: 2">
               <el-button type="success" style="background-color: rgba(97,116,131,0.66);border: 1px solid #ccc8c8;" round
-                         @click="changeToRegiest">还没有账户？点击注册
+                         @click="changeToRegiest">Haven't account yet? Click to signup
               </el-button>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <!-- 欢迎图片 -->
             <div style="flex: 2">
               <el-button type="success" style="background-color:rgba(97,116,131,0.66);border: 1px solid #ccc8c8;" round
-                         @click="changeToLogin">已有账户？点击登录
+                         @click="changeToLogin">Have account already？Click to login
               </el-button>
             </div>
           </div>
@@ -262,15 +262,15 @@ watch(()=>ruleForm.password,(newValue,oldValue)=>{
 })
 const format=(percentage)=> {
   if (percentage <=30) {
-    return '密码安全性弱';
+    return 'Password strength: Weak';
   } else if (percentage>30&&percentage<=60 ) {
-    return '密码安全性中';
+    return 'Password strength: Medium';
   }
   else  if(percentage>60&&percentage<=80){
-    return '密码安全性较强';
+    return 'Password strength: Strong';
   }
   else{
-    return"密码安全性强"
+    return"Password strength: Strong"
   }
 }
 const getColor=(percentage)=>{
@@ -295,7 +295,7 @@ const register=()=>{
   if(ruleForm.password!==ruleForm.checkPass){
     ElMessage({
       type: 'warning',
-      message: '密码不一致',
+      message: 'Passwords do not match（',
     })
     return;
   }
@@ -319,7 +319,7 @@ const register=()=>{
     else{
       ElMessage({
         type: 'warning',
-        message: '请检查所填表单字段是否有效',
+        message: 'Please check if the form fields are valid',
       })
     }
   })
