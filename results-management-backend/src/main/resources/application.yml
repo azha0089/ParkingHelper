@@ -4,9 +4,9 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://39.105.231.232:3306/card_system?serverTimezone=UTC
-      username: card_system
-      password: card_system
+      url: jdbc:mysql://localhost:3306/parkinghelper?serverTimezone=UTC
+      username: root
+      password: zac123456
   servlet:
     multipart:
       enabled: true
