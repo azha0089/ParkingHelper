@@ -18,11 +18,11 @@
             <div style="flex: 1;justify-content: center;align-items: center">
               <el-form :model="formData" label-width="auto" label-position="top"
                        style="margin-left: 22%;margin-right:30% ">
-                <el-form-item label="用户名" style="margin-bottom: 0;margin-top: 6%">
-                  <el-input v-model="formData.username" placeholder="Input your UserID" clearable></el-input>
+                <el-form-item label="User name" style="margin-bottom: 0;margin-top: 6%">
+                  <el-input v-model="formData.username" placeholder="username" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="密码" style="margin-bottom: 0">
-                  <el-input v-model="formData.password" placeholder="Input your password" show-password type="password"
+                <el-form-item label="password" style="margin-bottom: 0">
+                  <el-input v-model="formData.password" placeholder="password" show-password type="password"
                             clearable></el-input>
                 </el-form-item>
 
@@ -59,16 +59,16 @@
           <!--            注册表单-->
           <div v-show="!isShow" class="registForm">
             <el-form :model="ruleForm" :rules="rules" ref="checkForm" status-icon  label-width="auto" >
-              <el-form-item label="UserID" style="margin-bottom: 17px;margin-top: 3%" prop="username">
-                <el-input v-model="ruleForm.username" placeholder="Input your UserID" clearable></el-input>
+              <el-form-item label="username" style="margin-bottom: 17px;margin-top: 3%" prop="username">
+                <el-input v-model="ruleForm.username" placeholder="Input your username" clearable></el-input>
               </el-form-item>
-              <el-form-item   label="Password" style="margin-bottom: 10px;margin-top: 0" prop="password">
-                <el-input show-password type="password" placeholder="Input your Password" v-model="ruleForm.password" autocomplete="off"></el-input>
+              <el-form-item   label="password" style="margin-bottom: 10px;margin-top: 0" prop="password">
+                <el-input show-password type="password" placeholder="Input your password " v-model="ruleForm.password" autocomplete="off"></el-input>
               </el-form-item>
               <div class="demo-progress" style="margin-left:25%;height: 15px;margin-top: 13px">
                 <el-progress striped striped-flow :duration="8"  style="width: 240px;"  :percentage="progressLength" :format="format" :color="getColor" />
               </div>
-              <el-form-item label="Confirm Password" style="margin-bottom: 17px;margin-top: 3px" prop="checkPass">
+              <el-form-item label="Confirm your password" style="margin-bottom: 17px;margin-top: 3px" prop="checkPass">
                 <el-input show-password type="password" placeholder="Input the same password" v-model="ruleForm.checkPass"
                           autocomplete="off" maxlength="12"></el-input>
               </el-form-item>
@@ -81,11 +81,11 @@
           <div v-show="!isShow" class="registBtn">
             <el-button type="success" round
                        style="width: 100px;margin-left:37%;background-color: rgba(97,116,131,0.22);border: 1px solid #ccc8c8;letter-spacing: 2px"
-                       @click="register">Signup
+                       @click="register">Register
             </el-button>
             <el-button type="success" round
                        style="background-color: rgba(97,116,131,0.22);width: 100px;border: 1px solid #ccc8c8;letter-spacing: 2px"
-                       @click="reSetForm">Reset info
+                       @click="reSetForm">Reset
             </el-button>
           </div>
         </transition>
@@ -107,12 +107,12 @@
             <!-- 欢迎语 -->
             <div
                 style="flex: 2;display: flex;align-items: center;font-size: 22px;color:  rgba(97, 116, 131, 0.97);font-weight: bold">
-              ParkingHelper
+              信息平台
             </div>
             <!-- 欢迎图片 -->
             <div style="flex: 2">
               <el-button type="success" style="background-color: rgba(97,116,131,0.66);border: 1px solid #ccc8c8;" round
-                         @click="changeToRegiest">Haven't account yet? Click to signup
+                         @click="changeToRegiest">Click to register
               </el-button>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <!-- 欢迎图片 -->
             <div style="flex: 2">
               <el-button type="success" style="background-color:rgba(97,116,131,0.66);border: 1px solid #ccc8c8;" round
-                         @click="changeToLogin">Have account already？Click to login
+                         @click="changeToLogin">Click to login
               </el-button>
             </div>
           </div>
@@ -174,7 +174,7 @@ const login = () => {
         sessionStorage.setItem('role', role);
         sessionStorage.setItem('username', username);
         ElMessage({
-          message: '登录成功,欢迎回来! ' + formData.username,
+          message: 'Welcome back! ' + formData.username,
           type: 'success',
         })
 
@@ -262,15 +262,15 @@ watch(()=>ruleForm.password,(newValue,oldValue)=>{
 })
 const format=(percentage)=> {
   if (percentage <=30) {
-    return 'Password strength: Weak';
+    return 'password security weak';
   } else if (percentage>30&&percentage<=60 ) {
-    return 'Password strength: Medium';
+    return 'password security medium';
   }
   else  if(percentage>60&&percentage<=80){
-    return 'Password strength: Strong';
+    return 'password security strong';
   }
   else{
-    return"Password strength: Strong"
+    return"password security strong"
   }
 }
 const getColor=(percentage)=>{
@@ -295,7 +295,7 @@ const register=()=>{
   if(ruleForm.password!==ruleForm.checkPass){
     ElMessage({
       type: 'warning',
-      message: 'Passwords do not match（',
+      message: 'password not the same',
     })
     return;
   }
@@ -319,7 +319,7 @@ const register=()=>{
     else{
       ElMessage({
         type: 'warning',
-        message: 'Please check if the form fields are valid',
+        message: 'Please check again',
       })
     }
   })
@@ -327,7 +327,7 @@ const register=()=>{
 const reSetForm=()=>{
   ruleForm.username="";
   ruleForm.password= ''
-  ruleForm.role= "学生"
+  ruleForm.role= "student"
   ruleForm.name=""
   ruleForm.major=''
   ruleForm.checkPass= ''
